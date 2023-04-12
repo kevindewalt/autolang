@@ -12,19 +12,19 @@ from .auto import AutoAgent
 
 objective = input('What is my purpose? ')
 
-llm: BaseLLM = ChatOpenAI(model_name="gpt-4", temperature=0, request_timeout=120) # type: ignore 
+llm: BaseLLM = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0, request_timeout=120) # type: ignore 
 embeddings = OpenAIEmbeddings() # type: ignore
 
 """
 Customize the tools the agent uses here. Here are some others you can add:
 
 os.environ["WOLFRAM_ALPHA_APPID"] = "<APPID>"
-os.environ["SERPER_API_KEY"] = "<KEY>"
-
-tool_names = ["terminal", "requests", "python_repl", "human", "google-serper", "wolfram-alpha"]
 """
 
-tool_names = ["python_repl", "human"]
+
+tool_names = ["terminal", "requests", "python_repl", "human", "google-serper"]
+
+# tool_names = ["python_repl", "human"]
 
 tools: List[Tool] = load_tools(tool_names, llm=llm)  # type: ignore
 
